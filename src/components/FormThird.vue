@@ -1,0 +1,314 @@
+<template>
+    <div class="container-for-form-full">
+        <span>Get a project quote</span>
+        <span>Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</span>
+        <div class="container-for-form">
+            <div class="container-for-form-numbers">
+                <div><div>1</div></div>
+                <div><div></div></div>
+                <div>2</div>
+                <div><div></div></div>
+                <div>3</div>
+                <div><div></div></div>
+                <div>4</div>
+            </div>
+            <hr>
+            <div class="container-for-form-header">What’s your project budget?</div>
+            <div class="container-for-form-description">Please select the project budget range you have in mind.</div>
+            <div class="form">
+                <div class="form-container-page-2">
+                    <div :class="{active: isActive1}" @click="toggleClass1()">
+                        <input type="radio" value="$5.000 - $10.000" id="5k" :checked="isActive1">
+                        <label for="5k" @click="toggleClass1()">$5.000 - $10.000</label>
+                    </div>
+                    <div :class="{active: isActive2}" @click="toggleClass2()">
+                        <input type="radio" value="$10.000 - $20.000" id="10k" :checked="isActive2">
+                        <label for="10k" @click="toggleClass2()">$10.000 - $20.000</label>
+                    </div>
+                    <div :class="{active: isActive3}" @click="toggleClass3()">
+                        <input type="radio" value="$20.000 - $50.000" id="20k" :checked="isActive3">
+                        <label for="20k" @click="toggleClass3()">$20.000 - $50.000</label>
+                    </div>
+                    <div :class="{active: isActive4}" @click="toggleClass4()">
+                        <input type="radio" value="$50.000 +" id="50k" :checked="isActive4">
+                        <label for="50k" @click="toggleClass4()">$50.000 +</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-next-and-previous-flex">
+            <div class="button-previous">Previous step</div>
+            <div class="button-next">Next step</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                isActive1: false,
+                isActive2: false,
+                isActive3: false,
+                isActive4: false
+            }
+        },
+        methods: {
+            toggleClass1() {
+                this.isActive1 = !this.isActive1
+                if (this.isActive1 === true) {
+                    this.isActive2 = false
+                    this.isActive3 = false
+                    this.isActive4 = false
+                }                
+            },
+            toggleClass2() {
+                this.isActive2 = !this.isActive2
+                if (this.isActive2 === true) {
+                    this.isActive3 = false
+                    this.isActive4 = false
+                    this.isActive1 = false
+                }                
+            },
+            toggleClass3() {
+                this.isActive3 = !this.isActive3
+                if (this.isActive3 === true) {
+                    this.isActive4 = false
+                    this.isActive1 = false
+                    this.isActive2 = false
+                }
+                
+            },
+            toggleClass4() {                
+                this.isActive4 = !this.isActive4
+                if (this.isActive4 === true) {
+                    this.isActive1 = false
+                    this.isActive2 = false
+                    this.isActive3 = false
+                }
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    label {
+        margin-left: 5px;
+        color: rgb(23, 15, 73);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 17px;
+        letter-spacing: 2%;
+    }
+    input[type='radio'] {
+        border-radius: 50%;
+        width: 17px;
+        height: 17px;
+    }
+    input[type='radio']:checked {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        box-sizing: border-box;
+        appearance: none;
+        width: 17px;
+        height: 17px;
+        background: rgb(255, 255, 255);
+        border: 5px solid rgb(74, 58, 255)
+    }
+    .activeRound {
+        box-sizing: border-box;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background: rgb(255, 255, 255);
+        border: 1px solid rgb(74, 58, 255)
+    }
+    .round {    
+        border-radius: 50%;
+        width: 12px;
+        height: 17px;
+        box-shadow: inset 0px -2.58px 6.01px 0px rgba(20, 20, 43, 0.08);
+        background: rgb(255, 255, 255);
+        border: 1px solid rgb(217, 219, 233);
+    }
+    .buttons-next-and-previous-flex {
+        display: flex;
+        & .button-previous {
+            width: 192px;
+            height: 61px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border: 1px solid rgb(74, 58, 255);
+			border-radius: 66px;
+            margin-top: 32px;
+            color: rgb(74, 58, 255);
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+    .form-container-page-2 {
+        display: grid;
+        grid-template-columns: 284px 284px;
+        column-gap: 28px;
+        row-gap: 21px;
+        & > div {
+            padding-left: 26px;
+            box-sizing: border-box;
+            border: 1px solid rgb(239, 240, 247);
+			border-radius: 16px;
+            box-shadow: 0 2px 6px 0 rgba(19, 18, 66, 0.07);
+            background: rgb(255, 255, 255);
+            height: 115px;
+            display: flex;
+            align-items: center;            
+            & div {
+                color: rgb(23, 15, 73);
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 17px;
+                letter-spacing: 2%;
+                padding-left: 5px;
+            }
+        }
+        & .active {
+            border: 2px solid rgb(74, 58, 255);
+        }
+    }
+    .container-for-form-full {
+        display: flex;
+        flex-direction: column;
+        margin-left: 60px;
+        & .container-for-form {
+            width: 698px;
+            height: 606px;
+            border-radius: 48px;
+            box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
+            background: rgb(255, 255, 255);
+        }
+        & .form {
+            display: grid;
+            grid-template-columns: 284px 284px;
+            margin-left: 46px;
+            column-gap: 28px;
+            row-gap: 44px;
+        }
+        & .container-for-form-numbers {
+            box-sizing: border-box;
+            column-gap: 18px;
+            display: flex;        
+            height: 34px;
+            padding-top: 34px;
+            padding-left: 89px;
+            padding-bottom: 58px;
+            & div:first-child, div:nth-child(3), div:nth-child(5) {
+                display: flex;
+                color: rgb(255, 255, 255);
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 18px;
+                background: rgb(74, 58, 255);
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+            }
+            & div:nth-child(2), div:nth-child(4), div:nth-child(6) {
+                width: 98px;
+                height: 6px;
+                border-radius: 40px;
+                background: rgb(239, 240, 247);
+                margin-top: 12px;
+            }
+            & div:nth-child(2) div, div:nth-child(4) div {
+                width: 98px;
+                height: 6px;
+                border-radius: 40px;
+                background: rgb(74, 58, 255);
+            }
+            div:nth-child(6) div {
+                width: 49px;
+                height: 6px;
+                border-radius: 40px;
+                background: rgb(74, 58, 255);
+            }
+            & div:nth-child(7) {
+                display: flex;
+                color: rgb(111, 108, 144);
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 18px;
+                background: rgb(239, 240, 247);
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+            }        
+        }
+        & span:first-child {
+            display: block;
+            color: rgb(23, 15, 73);
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 46px;
+            text-align: center;
+            width: 680px;            
+            margin-bottom: 12px;
+        }
+        & span:nth-child(2) {
+            display:block;
+            color: rgb(111, 108, 144);
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 30px;
+            text-align: center;
+            width: 517px;
+            margin-left: 82px;
+            margin-bottom: 42px;
+        }
+        & hr {
+            width: 596px;
+            border: 1px solid rgb(217, 219, 233);
+            margin-bottom: 64px;
+        }
+        & .container-for-form-header {
+            color: rgb(23, 15, 73);
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 35px;
+            padding-left: 46px;
+            height: 35px;
+            margin-bottom: 8px;
+        }
+        & .container-for-form-description {
+            padding-left: 46px;
+            color: rgb(111, 108, 144);
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 30px;
+            text-align: left;
+            height: 30px;
+            margin-bottom: 39px;
+        }
+        & .button-next {
+            width: 171px;
+            height: 61px;
+            background-color: rgb(74, 58, 255);
+            border-radius: 56px;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            margin-top: 32px;
+            margin-left: 346px;
+        }
+    }
+</style>
