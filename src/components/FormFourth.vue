@@ -45,15 +45,14 @@
 </template>
 <script>
     export default {
-        props: {
-            savedObject: Object
-        },
+        inject: ['superObject'],
         methods: {
             changeSlideBack() {
                 this.$emit('changeslideback', 2)
             },
             objectToLocalStorage() {
-                localStorage.setItem('saved', JSON.stringify(this.savedObject))
+                localStorage.setItem('saved', JSON.stringify(this.superObject))
+                console.log(localStorage.getItem('saved'))
             }
         }
     }

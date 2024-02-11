@@ -45,16 +45,22 @@
 
 <script>
     export default {
+        inject: ['superObject'],
         props: {
             savedObject: Object
         },
         data() {
             return {
-                isActive1: this.savedObject?.budget ? (this.savedObject.budget === '$5.000 - $10.000' ? true : false) : false,
+                isActive1: this.superObject?.budget ? (this.superObject.budget === '$5.000 - $10.000' ? true : false) : false,
+                isActive2: this.superObject?.budget ? (this.superObject.budget === '$10.000 - $20.000' ? true : false) : false,
+                isActive3: this.superObject?.budget ? (this.superObject.budget === '$20.000 - $50.000' ? true : false) : false,
+                isActive4: this.superObject?.budget ? (this.superObject.budget === '$50.000 +' ? true : false) : false,
+                budget: this.superObject?.budget ? this.superObject.budget : ''
+/*                 isActive1: this.savedObject?.budget ? (this.savedObject.budget === '$5.000 - $10.000' ? true : false) : false,
                 isActive2: this.savedObject?.budget ? (this.savedObject.budget === '$10.000 - $20.000' ? true : false) : false,
                 isActive3: this.savedObject?.budget ? (this.savedObject.budget === '$20.000 - $50.000' ? true : false) : false,
                 isActive4: this.savedObject?.budget ? (this.savedObject.budget === '$50.000 +' ? true : false) : false,
-                budget: this.savedObject?.budget ? this.savedObject.budget : ''
+                budget: this.savedObject?.budget ? this.savedObject.budget : '' */
             }
         },
         methods: {
@@ -97,7 +103,7 @@
             },
             changeSlide() {
                 this.$emit('changeslide', 3)
-                this.$parent.savedObject.budget = this.budget
+                this.superObject.budget = this.budget
             },
             changeSlideBack() {
                 this.$emit('changeslideback', 1)

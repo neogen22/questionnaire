@@ -46,10 +46,10 @@
             </div>        
         </div>
         <div class="multi-step-form-step-1"><span>Multi Step Form - Step {{ count + 1 }}</span><span>Preview Cloneable</span></div>        
-        <FormFirst @changeslide="count = $event" v-if="count === 0" :savedObject="savedObject"/>
-        <FormSecond @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 1" :savedObject="savedObject"/>
-        <FormThird @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 2" :savedObject="savedObject"/>
-        <FormFourth @changeslideback="count = $event" v-if="count === 3" :savedObject="savedObject"/>
+        <FormFirst @changeslide="count = $event" v-if="count === 0"/>
+        <FormSecond @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 1"/>
+        <FormThird @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 2"/>
+        <FormFourth @changeslideback="count = $event" v-if="count === 3"/>
     </body>
 </template>
 
@@ -65,10 +65,12 @@ export default {
         FormThird,
         FormFourth
     },
+    provide: {
+        superObject: {}
+    },
     data() {
         return {
             count: 0,
-            savedObject: {}
         }
     }
 }

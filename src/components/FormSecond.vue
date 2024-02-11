@@ -44,16 +44,14 @@
 </template>
 <script>
     export default {
-        props: {
-            savedObject: Object
-        },
+        inject: ['superObject'],
         data() {
             return {
-                isActive1: this.savedObject.services?.includes('Development') ? true: false,
-                isActive2: this.savedObject.services?.includes('Web Design') ? true: false,
-                isActive3: this.savedObject.services?.includes('Marketing') ? true: false,
-                isActive4: this.savedObject.services?.includes('Other') ? true: false,
-                services: this.savedObject?.services ? this.savedObject.services : []
+                isActive1: this.superObject.services?.includes('Development') ? true: false,
+                isActive2: this.superObject.services?.includes('Web Design') ? true: false,
+                isActive3: this.superObject.services?.includes('Marketing') ? true: false,
+                isActive4: this.superObject.services?.includes('Other') ? true: false,
+                services: this.superObject?.services ? this.superObject.services : []
             }
         },
         methods: {
@@ -90,7 +88,7 @@
                 }
             },            
             changeSlide() {
-                this.$parent.savedObject.services = this.services
+                this.superObject.services = this.services
                 this.$emit('changeslide', 2)                
             },
             changeSlideBack() {
@@ -149,6 +147,8 @@
             height: 115px;
             display: flex;
             align-items: center;
+            transition-property: border-color;
+            transition-duration: 0.5s;
             & img {
                 width: 66px;
             }

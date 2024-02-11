@@ -43,28 +43,25 @@
 </template>
 <script>
     export default {
+        inject: ['superObject'],
         data() {
             return {
-                personName: this.savedObject?.personName ? this.savedObject.personName : '',
-                email: this.savedObject?.email ? this.savedObject.email : '',
-                phone: this.savedObject?.phone ? this.savedObject.phone : '',
-                company: this.savedObject?.company ? this.savedObject.company : '',
+                personName: this.superObject?.personName ? this.superObject.personName : '',
+                email: this.superObject?.email ? this.superObject.email : '',
+                phone: this.superObject?.phone ? this.superObject.phone : '',
+                company: this.superObject?.company ? this.superObject.company : '',
             }
-        },
-        props: {
-            savedObject: Object,
         },
         methods: {
             changeSlide() {
-                this.$parent.savedObject.personName = this.personName
-                this.$parent.savedObject.email = this.email
-                this.$parent.savedObject.company = this.company
-                this.$parent.savedObject.phone = this.phone
+                this.superObject.personName = this.personName
+                this.superObject.email = this.email
+                this.superObject.company = this.company
+                this.superObject.phone = this.phone
                 this.$emit('changeslide', 1)
             }
         }
     }
-
 </script>
 <style scoped>
     .container-for-form-full {
