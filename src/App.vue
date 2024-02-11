@@ -80,6 +80,7 @@ export default {
 <style scoped>
     body {
         flex-direction: column;
+        height: 1800px;
     }
     .multi-step-form-step-1 {
         width: 1242px;
