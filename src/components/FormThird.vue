@@ -37,20 +37,24 @@
             </div>
         </div>
         <div class="buttons-next-and-previous-flex">
-            <div class="button-previous">Previous step</div>
-            <div class="button-next">Next step</div>
+            <button class="button-previous" @click="changeSlideBack()">Previous step</button>
+            <button class="button-next" @click="changeSlide()">Next step</button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props: {
+            savedObject: Object
+        },
         data() {
             return {
-                isActive1: false,
-                isActive2: false,
-                isActive3: false,
-                isActive4: false
+                isActive1: this.savedObject?.budget ? (this.savedObject.budget === '$5.000 - $10.000' ? true : false) : false,
+                isActive2: this.savedObject?.budget ? (this.savedObject.budget === '$10.000 - $20.000' ? true : false) : false,
+                isActive3: this.savedObject?.budget ? (this.savedObject.budget === '$20.000 - $50.000' ? true : false) : false,
+                isActive4: this.savedObject?.budget ? (this.savedObject.budget === '$50.000 +' ? true : false) : false,
+                budget: this.savedObject?.budget ? this.savedObject.budget : ''
             }
         },
         methods: {
@@ -60,7 +64,8 @@
                     this.isActive2 = false
                     this.isActive3 = false
                     this.isActive4 = false
-                }                
+                    this.budget='$5.000 - $10.000'
+                }
             },
             toggleClass2() {
                 this.isActive2 = !this.isActive2
@@ -68,6 +73,7 @@
                     this.isActive3 = false
                     this.isActive4 = false
                     this.isActive1 = false
+                    this.budget = '$10.000 - $20.000'
                 }                
             },
             toggleClass3() {
@@ -76,6 +82,7 @@
                     this.isActive4 = false
                     this.isActive1 = false
                     this.isActive2 = false
+                    this.budget = '$20.000 - $50.000'
                 }
                 
             },
@@ -85,7 +92,15 @@
                     this.isActive1 = false
                     this.isActive2 = false
                     this.isActive3 = false
+                    this.budget = '$50.000 +'
                 }
+            },
+            changeSlide() {
+                this.$emit('changeslide', 3)
+                this.$parent.savedObject.budget = this.budget
+            },
+            changeSlideBack() {
+                this.$emit('changeslideback', 1)
             }
         }
     }
@@ -117,24 +132,10 @@
         background: rgb(255, 255, 255);
         border: 5px solid rgb(74, 58, 255)
     }
-    .activeRound {
-        box-sizing: border-box;
-        border-radius: 50%;
-        width: 15px;
-        height: 15px;
-        background: rgb(255, 255, 255);
-        border: 1px solid rgb(74, 58, 255)
-    }
-    .round {    
-        border-radius: 50%;
-        width: 12px;
-        height: 17px;
-        box-shadow: inset 0px -2.58px 6.01px 0px rgba(20, 20, 43, 0.08);
-        background: rgb(255, 255, 255);
-        border: 1px solid rgb(217, 219, 233);
-    }
     .buttons-next-and-previous-flex {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         & .button-previous {
             width: 192px;
             height: 61px;
@@ -142,13 +143,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box;
+            box-sizing: border-box;            
             border: 1px solid rgb(74, 58, 255);
 			border-radius: 66px;
             margin-top: 32px;
             color: rgb(74, 58, 255);
             font-weight: 400;
             line-height: 20px;
+        }
+        & .button-next {
+            width: 171px;
+            height: 61px;
+            background-color: rgb(74, 58, 255);
+            border-radius: 56px;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            margin-top: 32px;
+            border: none;
         }
     }
     .form-container-page-2 {
@@ -276,6 +291,7 @@
             width: 596px;
             border: 1px solid rgb(217, 219, 233);
             margin-bottom: 64px;
+            margin-left: 50px;
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
@@ -295,20 +311,6 @@
             text-align: left;
             height: 30px;
             margin-bottom: 39px;
-        }
-        & .button-next {
-            width: 171px;
-            height: 61px;
-            background-color: rgb(74, 58, 255);
-            border-radius: 56px;
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            margin-top: 32px;
-            margin-left: 346px;
         }
     }
 </style>

@@ -19,28 +19,53 @@
                 <div class="form-inside-first-page">
                     <img src="\public\man.svg">
                     <div>Name</div>
-                    <input class="form-first-page" placeholder="John Carter">
+                    <input class="form-first-page" placeholder="John Carter" v-model="personName">
                 </div>
                 <div class="form-inside-first-page">
                     <img src="\public\email.svg">
                     <div>Email</div>
-                    <input class="form-first-page" placeholder="Email address">
+                    <input class="form-first-page" placeholder="Email address" v-model="email">
                 </div>
                 <div class="form-inside-first-page">
                     <img src="\public\phone.svg">
                     <div>Phone Number</div>
-                    <input class="form-first-page" placeholder="(123) 456 - 7890">
+                    <input class="form-first-page" placeholder="(123) 456 - 7890" v-model="phone">
                 </div> 
                 <div class="form-inside-first-page">
                     <img src="\public\company.svg">
                     <div>Company</div>
-                    <input class="form-first-page" placeholder="Company name">
+                    <input class="form-first-page" placeholder="Company name" v-model="company">
                 </div>
             </div>
         </div>
-        <div class="button-next">Next step</div>
+        <button class="button-next" @click="changeSlide()">Next step</button>
     </div>
 </template>
+<script>
+    export default {
+        data() {
+            return {
+                personName: this.savedObject?.personName ? this.savedObject.personName : '',
+                email: this.savedObject?.email ? this.savedObject.email : '',
+                phone: this.savedObject?.phone ? this.savedObject.phone : '',
+                company: this.savedObject?.company ? this.savedObject.company : '',
+            }
+        },
+        props: {
+            savedObject: Object,
+        },
+        methods: {
+            changeSlide() {
+                this.$parent.savedObject.personName = this.personName
+                this.$parent.savedObject.email = this.email
+                this.$parent.savedObject.company = this.company
+                this.$parent.savedObject.phone = this.phone
+                this.$emit('changeslide', 1)
+            }
+        }
+    }
+
+</script>
 <style scoped>
     .container-for-form-full {
         display: flex;
@@ -212,6 +237,7 @@
             box-sizing: border-box;
             margin-top: 32px;
             align-self: flex-end;
+            border: none;
         }
     }
 </style>

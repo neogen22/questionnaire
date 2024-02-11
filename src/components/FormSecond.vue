@@ -37,40 +37,73 @@
             </div>
         </div>
         <div class="buttons-next-and-previous-flex">
-            <div class="button-previous">Previous step</div>
-            <div class="button-next">Next step</div>
+            <button class="button-previous" @click="changeSlideBack()">Previous step</button>
+            <button class="button-next" @click="changeSlide()">Next step</button>
         </div>
     </div>
 </template>
 <script>
     export default {
+        props: {
+            savedObject: Object
+        },
         data() {
             return {
-                isActive1: false,
-                isActive2: false,
-                isActive3: false,
-                isActive4: false
+                isActive1: this.savedObject.services?.includes('Development') ? true: false,
+                isActive2: this.savedObject.services?.includes('Web Design') ? true: false,
+                isActive3: this.savedObject.services?.includes('Marketing') ? true: false,
+                isActive4: this.savedObject.services?.includes('Other') ? true: false,
+                services: this.savedObject?.services ? this.savedObject.services : []
             }
         },
         methods: {
             toggleClass1() {
                 this.isActive1 = !this.isActive1
+                if (this.isActive1) {
+                    this.services.push('Development')
+                } else {
+                    this.services.splice(this.services.findIndex(e => e === 'Development'), 1)
+                }
             },
             toggleClass2() {
                 this.isActive2 = !this.isActive2
+                if (this.isActive2) {
+                    this.services.push('Web Design')
+                } else {
+                    this.services.splice(this.services.findIndex(e => e === 'Web Design'), 1)
+                }
             },
             toggleClass3() {
                 this.isActive3 = !this.isActive3
+                if (this.isActive3) {
+                    this.services.push('Marketing')
+                } else {
+                    this.services.splice(this.services.findIndex(e => e === 'Marketing'), 1)
+                }
             },
             toggleClass4() {
-                this.isActive4 = !this.isActive4
+                this.isActive4 = !this.isActive4                
+                if (this.isActive4) {
+                    this.services.push('Other')
+                } else {
+                    this.services.splice(this.services.findIndex(e => e === 'Other'), 1)
+                }
+            },            
+            changeSlide() {
+                this.$parent.savedObject.services = this.services
+                this.$emit('changeslide', 2)                
+            },
+            changeSlideBack() {
+                this.$emit('changeslideback', 0)
             }
         }
-    }
+    }    
 </script>
 <style scoped>
     .buttons-next-and-previous-flex {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         & .button-previous {
             width: 192px;
             height: 61px;
@@ -85,6 +118,20 @@
             color: rgb(74, 58, 255);
             font-weight: 400;
             line-height: 20px;
+        }
+        & .button-next {
+            width: 171px;
+            height: 61px;
+            background-color: rgb(74, 58, 255);
+            border-radius: 56px;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            margin-top: 32px;
+            border: none;
         }
     }
     .form-container-page-2 {
@@ -214,6 +261,7 @@
             width: 596px;
             border: 1px solid rgb(217, 219, 233);
             margin-bottom: 64px;
+            margin-left: 50px;
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
@@ -233,20 +281,6 @@
             text-align: left;
             height: 30px;
             margin-bottom: 39px;
-        }
-        & .button-next {
-            width: 171px;
-            height: 61px;
-            background-color: rgb(74, 58, 255);
-            border-radius: 56px;
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            margin-top: 32px;
-            margin-left: 346px;
         }
     }
 </style>

@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
     <body>
         <div class="header">
@@ -49,12 +45,11 @@
                 </div>    
             </div>        
         </div>
-        <div class="multi-step-form-step-1"><span>Multi Step Form - Step 1</span><span>Preview Cloneable</span></div>
-        <FormFirst/>
-        <FormSecond/>
-        <FormThird/>
-
-        
+        <div class="multi-step-form-step-1"><span>Multi Step Form - Step {{ count + 1 }}</span><span>Preview Cloneable</span></div>        
+        <FormFirst @changeslide="count = $event" v-if="count === 0" :savedObject="savedObject"/>
+        <FormSecond @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 1" :savedObject="savedObject"/>
+        <FormThird @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 2" :savedObject="savedObject"/>
+        <FormFourth @changeslideback="count = $event" v-if="count === 3" :savedObject="savedObject"/>
     </body>
 </template>
 
@@ -62,11 +57,19 @@
 import FormFirst from './components/FormFirst.vue';
 import FormSecond from './components/FormSecond.vue';
 import FormThird from './components/FormThird.vue'
+import FormFourth from './components/FormFourth.vue'
 export default {
     components: {
         FormFirst,
         FormSecond,
         FormThird,
+        FormFourth
+    },
+    data() {
+        return {
+            count: 0,
+            savedObject: {}
+        }
     }
 }
 
