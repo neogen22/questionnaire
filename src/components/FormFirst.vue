@@ -16,33 +16,21 @@
             <div class="container-for-form-header">Contact details</div>
             <div class="container-for-form-description">Please fill your information so we can get in touch with you.</div>
             <div class="form">
-                <div class="form-inside-first-page">
-                    <img src="\public\man.svg">
-                    <div>Name</div>
-                    <input class="form-first-page" placeholder="John Carter" v-model="personName">
-                </div>
-                <div class="form-inside-first-page">
-                    <img src="\public\email.svg">
-                    <div>Email</div>
-                    <input class="form-first-page" placeholder="Email address" v-model="email">
-                </div>
-                <div class="form-inside-first-page">
-                    <img src="\public\phone.svg">
-                    <div>Phone Number</div>
-                    <input class="form-first-page" placeholder="(123) 456 - 7890" v-model="phone">
-                </div> 
-                <div class="form-inside-first-page">
-                    <img src="\public\company.svg">
-                    <div>Company</div>
-                    <input class="form-first-page" placeholder="Company name" v-model="company">
-                </div>
+                <InputComponent formPlaceholder="John Carter" formName="Name" formImageSource="\public\man.svg" @customChange="saveName" :value="personName"/>
+                <InputComponent formPlaceholder="Email address" formName="Email" formImageSource="\public\email.svg" @customChange="saveEmail" :value="email"/>
+                <InputComponent formPlaceholder="Phone number" formName="Phone" formImageSource="\public\phone.svg" @customChange="savePhone" :value="phone"/>
+                <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="\public\company.svg" @customChange="saveCompany" :value="company"/>
             </div>
         </div>
         <button class="button-next" @click="changeSlide()">Next step</button>
     </div>
 </template>
 <script>
+    import InputComponent from './InputComponent.vue'
     export default {
+        components: {
+            InputComponent    
+        },
         inject: ['superObject'],
         data() {
             return {
@@ -59,6 +47,18 @@
                 this.superObject.company = this.company
                 this.superObject.phone = this.phone
                 this.$emit('changeslide', 1)
+            },
+            saveName(event) {
+                this.personName = event                
+            },
+            saveEmail(event) {
+                this.email = event
+            },
+            saveCompany(event) {
+                this.company = event
+            },
+            savePhone(event) {
+                this.phone = event
             }
         }
     }
@@ -70,10 +70,11 @@
         margin-left: 60px;
         & .container-for-form {
             width: 698px;
-            height: 606px;
+            min-height: 606px;
             border-radius: 48px;
             box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
             background: rgb(255, 255, 255);
+            padding-bottom: 86px;
         }
         & .form {
             display: grid;
@@ -81,45 +82,6 @@
             margin-left: 46px;
             column-gap: 28px;
             row-gap: 44px;
-            & .form-first-page {
-                width: 284px;
-                height: 66px;
-                box-sizing: border-box;
-                border: 1px solid rgb(239, 240, 247);
-                border-radius: 46px;
-                box-shadow: 0px 2px 6px 0px rgba(19, 18, 66, 0.07);
-                background: rgb(255, 255, 255);            
-            }
-            & .form-inside-first-page {
-                display: flex;
-                flex-direction: column;
-                gap: 18px;
-                & div {
-                    color: rgb(23, 15, 73);
-                    font-size: 18px;
-                    font-weight: 500;
-                    line-height: 20px;
-                    letter-spacing: 0%;
-                }
-                & input {
-                    text-indent: 20px;
-                    color: rgb(111, 108, 144);
-                    font-size: 18px;
-                    font-weight: 400;
-                    line-height: 20px;
-                    letter-spacing: 0%;
-                }
-                & img {
-                    width: 30px;
-                    height: 30px;                    
-                    position: absolute; 
-                    margin-left: 240px; 
-                    margin-top: 55px;
-                }       
-            }
-            & .form-inside-first-page:nth-child(2) svg {
-                margin-top: 5px;
-            }
         }
         & .container-for-form-numbers {
             box-sizing: border-box;

@@ -17,22 +17,10 @@
             <div class="container-for-form-description">Please select which service you are interested in.</div>
             <div class="form">
                 <div class="form-container-page-2">
-                    <div :class="{active: isActive1}" @click="toggleClass1()">
-                        <img src="\public\developmentIcon.svg" alt="">
-                        <div>Development</div>
-                    </div>
-                    <div :class="{active: isActive2}" @click="toggleClass2()">
-                        <img src="\public\WebDesignIcon.svg" alt="">
-                        <div>Web Design</div>
-                    </div>
-                    <div :class="{active: isActive3}" @click="toggleClass3()">
-                        <img src="\public\marketing.svg" alt="">
-                        <div>Marketing</div>
-                    </div>
-                    <div :class="{active: isActive4}" @click="toggleClass4()">
-                        <img src="\public\other.svg" alt="">
-                        <div>Other</div>
-                    </div>
+                    <CheckBoxComponent name="Development" checkBoxImageSource="public\developmentIcon.svg"/>
+                    <CheckBoxComponent name="Web Design" checkBoxImageSource="public\WebDesignIcon.svg" />
+                    <CheckBoxComponent name="Marketing" checkBoxImageSource="public\marketing.svg" />
+                    <CheckBoxComponent name="Other" checkBoxImageSource="public\other.svg" />
                 </div>
             </div>
         </div>
@@ -43,52 +31,14 @@
     </div>
 </template>
 <script>
+    import CheckBoxComponent from './CheckBoxComponent.vue'
     export default {
         inject: ['superObject'],
-        data() {
-            return {
-                isActive1: this.superObject.services?.includes('Development') ? true: false,
-                isActive2: this.superObject.services?.includes('Web Design') ? true: false,
-                isActive3: this.superObject.services?.includes('Marketing') ? true: false,
-                isActive4: this.superObject.services?.includes('Other') ? true: false,
-                services: this.superObject?.services ? this.superObject.services : []
-            }
+        components: {
+            CheckBoxComponent,
         },
         methods: {
-            toggleClass1() {
-                this.isActive1 = !this.isActive1
-                if (this.isActive1) {
-                    this.services.push('Development')
-                } else {
-                    this.services.splice(this.services.findIndex(e => e === 'Development'), 1)
-                }
-            },
-            toggleClass2() {
-                this.isActive2 = !this.isActive2
-                if (this.isActive2) {
-                    this.services.push('Web Design')
-                } else {
-                    this.services.splice(this.services.findIndex(e => e === 'Web Design'), 1)
-                }
-            },
-            toggleClass3() {
-                this.isActive3 = !this.isActive3
-                if (this.isActive3) {
-                    this.services.push('Marketing')
-                } else {
-                    this.services.splice(this.services.findIndex(e => e === 'Marketing'), 1)
-                }
-            },
-            toggleClass4() {
-                this.isActive4 = !this.isActive4                
-                if (this.isActive4) {
-                    this.services.push('Other')
-                } else {
-                    this.services.splice(this.services.findIndex(e => e === 'Other'), 1)
-                }
-            },            
             changeSlide() {
-                this.superObject.services = this.services
                 this.$emit('changeslide', 2)                
             },
             changeSlideBack() {
@@ -116,6 +66,7 @@
             color: rgb(74, 58, 255);
             font-weight: 400;
             line-height: 20px;
+            background-color: white;
         }
         & .button-next {
             width: 171px;
@@ -170,10 +121,11 @@
         margin-left: 60px;
         & .container-for-form {
             width: 698px;
-            height: 606px;
+            min-height: 606px;
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
             background: rgb(255, 255, 255);
+            padding-bottom: 86px;
         }
         & .form {
             display: grid;

@@ -17,22 +17,12 @@
             <div class="container-for-form-description">Please select the project budget range you have in mind.</div>
             <div class="form">
                 <div class="form-container-page-2">
-                    <div :class="{active: isActive1}" @click="toggleClass1()">
-                        <input type="radio" value="$5.000 - $10.000" id="5k" :checked="isActive1">
-                        <label for="5k" @click="toggleClass1()">$5.000 - $10.000</label>
-                    </div>
-                    <div :class="{active: isActive2}" @click="toggleClass2()">
-                        <input type="radio" value="$10.000 - $20.000" id="10k" :checked="isActive2">
-                        <label for="10k" @click="toggleClass2()">$10.000 - $20.000</label>
-                    </div>
-                    <div :class="{active: isActive3}" @click="toggleClass3()">
-                        <input type="radio" value="$20.000 - $50.000" id="20k" :checked="isActive3">
-                        <label for="20k" @click="toggleClass3()">$20.000 - $50.000</label>
-                    </div>
-                    <div :class="{active: isActive4}" @click="toggleClass4()">
-                        <input type="radio" value="$50.000 +" id="50k" :checked="isActive4">
-                        <label for="50k" @click="toggleClass4()">$50.000 +</label>
-                    </div>
+                    <RadioComponent v-for="(i, y) in values"  :key="values[y]"
+                        :value = i
+                        @activate-radio-button="receive"
+                        :class="{'selected': this.check === i}"
+                        :active="this.check === i"
+                    />
                 </div>
             </div>
         </div>
@@ -44,66 +34,25 @@
 </template>
 
 <script>
+    import RadioComponent from './RadioComponent.vue'
     export default {
         inject: ['superObject'],
-        props: {
-            savedObject: Object
+        components: {
+            RadioComponent,
         },
         data() {
             return {
-                isActive1: this.superObject?.budget ? (this.superObject.budget === '$5.000 - $10.000' ? true : false) : false,
-                isActive2: this.superObject?.budget ? (this.superObject.budget === '$10.000 - $20.000' ? true : false) : false,
-                isActive3: this.superObject?.budget ? (this.superObject.budget === '$20.000 - $50.000' ? true : false) : false,
-                isActive4: this.superObject?.budget ? (this.superObject.budget === '$50.000 +' ? true : false) : false,
-                budget: this.superObject?.budget ? this.superObject.budget : ''
-/*                 isActive1: this.savedObject?.budget ? (this.savedObject.budget === '$5.000 - $10.000' ? true : false) : false,
-                isActive2: this.savedObject?.budget ? (this.savedObject.budget === '$10.000 - $20.000' ? true : false) : false,
-                isActive3: this.savedObject?.budget ? (this.savedObject.budget === '$20.000 - $50.000' ? true : false) : false,
-                isActive4: this.savedObject?.budget ? (this.savedObject.budget === '$50.000 +' ? true : false) : false,
-                budget: this.savedObject?.budget ? this.savedObject.budget : '' */
+                check: this.superObject.budget ? this.superObject.budget : '',
+                values: ['$5.000 - $10.000', '$10.000 - $20.000', '$20.000 - $50.000', '$50.000 +']
             }
         },
         methods: {
-            toggleClass1() {
-                this.isActive1 = !this.isActive1
-                if (this.isActive1 === true) {
-                    this.isActive2 = false
-                    this.isActive3 = false
-                    this.isActive4 = false
-                    this.budget='$5.000 - $10.000'
-                }
-            },
-            toggleClass2() {
-                this.isActive2 = !this.isActive2
-                if (this.isActive2 === true) {
-                    this.isActive3 = false
-                    this.isActive4 = false
-                    this.isActive1 = false
-                    this.budget = '$10.000 - $20.000'
-                }                
-            },
-            toggleClass3() {
-                this.isActive3 = !this.isActive3
-                if (this.isActive3 === true) {
-                    this.isActive4 = false
-                    this.isActive1 = false
-                    this.isActive2 = false
-                    this.budget = '$20.000 - $50.000'
-                }
-                
-            },
-            toggleClass4() {                
-                this.isActive4 = !this.isActive4
-                if (this.isActive4 === true) {
-                    this.isActive1 = false
-                    this.isActive2 = false
-                    this.isActive3 = false
-                    this.budget = '$50.000 +'
-                }
+            receive(event) {
+                this.check = event
             },
             changeSlide() {
-                this.$emit('changeslide', 3)
-                this.superObject.budget = this.budget
+                this.superObject.budget = this.check
+                this.$emit('changeslide', 3)                
             },
             changeSlideBack() {
                 this.$emit('changeslideback', 1)
@@ -113,6 +62,9 @@
 </script>
 
 <style scoped>
+    .selected {
+        border: 2px solid rgb(74, 58, 255);
+    } 
     label {
         margin-left: 5px;
         color: rgb(23, 15, 73);
@@ -125,18 +77,6 @@
         border-radius: 50%;
         width: 17px;
         height: 17px;
-    }
-    input[type='radio']:checked {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -o-appearance: none;
-        box-sizing: border-box;
-        appearance: none;
-        width: 17px;
-        height: 17px;
-        background: rgb(255, 255, 255);
-        border: 5px solid rgb(74, 58, 255)
     }
     .buttons-next-and-previous-flex {
         display: flex;
@@ -156,6 +96,7 @@
             color: rgb(74, 58, 255);
             font-weight: 400;
             line-height: 20px;
+            background-color: white;
         }
         & .button-next {
             width: 171px;
@@ -177,28 +118,6 @@
         grid-template-columns: 284px 284px;
         column-gap: 28px;
         row-gap: 21px;
-        & > div {
-            padding-left: 26px;
-            box-sizing: border-box;
-            border: 1px solid rgb(239, 240, 247);
-			border-radius: 16px;
-            box-shadow: 0 2px 6px 0 rgba(19, 18, 66, 0.07);
-            background: rgb(255, 255, 255);
-            height: 115px;
-            display: flex;
-            align-items: center;            
-            & div {
-                color: rgb(23, 15, 73);
-                font-size: 16px;
-                font-weight: 400;
-                line-height: 17px;
-                letter-spacing: 2%;
-                padding-left: 5px;
-            }
-        }
-        & .active {
-            border: 2px solid rgb(74, 58, 255);
-        }
     }
     .container-for-form-full {
         display: flex;
@@ -206,10 +125,11 @@
         margin-left: 60px;
         & .container-for-form {
             width: 698px;
-            height: 606px;
+            min-height: 606px;
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
             background: rgb(255, 255, 255);
+            padding-bottom: 86px;
         }
         & .form {
             display: grid;
