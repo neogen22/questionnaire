@@ -8,10 +8,10 @@
             <div class="container-for-form-header">Contact details</div>
             <div class="container-for-form-description">Please fill your information so we can get in touch with you.</div>
             <div class="form">
-                <InputComponent formPlaceholder="John Carter" formName="Name" formImageSource="\public\man.svg" @customChange="saveName" :value="personName"/>
-                <InputComponent formPlaceholder="Email address" formName="Email" formImageSource="\public\email.svg" @customChange="saveEmail" :value="email"/>
-                <InputComponent formPlaceholder="Phone number" formName="Phone" formImageSource="\public\phone.svg" @customChange="savePhone" :value="phone"/>
-                <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="\public\company.svg" @customChange="saveCompany" :value="company"/>
+                <InputComponent formPlaceholder="John Carter" formName="Name" formImageSource="man.svg" @customChange="saveName" :value="personName"/>
+                <InputComponent formPlaceholder="Email address" formName="Email" formImageSource="email.svg" @customChange="saveEmail" :value="email"/>
+                <InputComponent formPlaceholder="Phone number" formName="Phone" formImageSource="phone.svg" @customChange="savePhone" :value="phone"/>
+                <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="company.svg" @customChange="saveCompany" :value="company"/>
             </div>
         </div>
         <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-next" buttonText="Next step"/>
