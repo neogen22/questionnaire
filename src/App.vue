@@ -1,10 +1,5 @@
-<template>
-    <body>        
-        <FormFirst @changeslide="count = $event" v-if="count === 0"/>
-        <FormSecond @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 1"/>
-        <FormThird @changeslide="count = $event" @changeslideback="count = $event" v-if="count === 2"/>
-        <FormFourth @changeslideback="count = $event" v-if="count === 3"/>
-    </body>
+<template>    
+    <component :is="dynamicComponent"/>
 </template>
 
 <script>
@@ -20,15 +15,14 @@ export default {
         FormFourth
     },
     provide: {
-        superObject: {}
+        superObject: {},
     },
     data() {
         return {
-            count: 0,
+            dynamicComponent: 'FormFirst'
         }
     },
 }
-
 </script>
 
 <style scoped>

@@ -3,15 +3,7 @@
         <span>Get a project quote</span>
         <span>Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</span>
         <div class="container-for-form">
-            <div class="container-for-form-numbers">
-                <div><div>1</div></div>
-                <div><div></div></div>
-                <div>2</div>
-                <div><div></div></div>
-                <div>3</div>
-                <div><div></div></div>
-                <div>4</div>
-            </div>
+            <StepperComponent pageNumber="pageFourth"/>
             <hr>
             <div class="form-inside">
                 <div class="picture">
@@ -39,43 +31,27 @@
             </div>
         </div>
         <div class="buttons-next-and-previous-flex">
-            <button class="button-previous" @click="changeSlideBack()">Previous step</button>
+            <ButtonComponent nameOfComponentTo="FormThird" buttonCSSType="button-previous" buttonText="Previous step"/>
         </div>
     </div>
 </template>
 <script>
+    import ButtonComponent from './ButtonComponent.vue';
+    import StepperComponent from './StepperComponent.vue';
     export default {
         inject: ['superObject'],
+        components: {
+            ButtonComponent,
+            StepperComponent
+        },
         methods: {
-            changeSlideBack() {
-                this.$emit('changeslideback', 2)
-            },
             objectToLocalStorage() {
                 localStorage.setItem('saved', JSON.stringify(this.superObject))
-                console.log(localStorage.getItem('saved'))
             }
         }
     }
 </script>
 <style scoped>
-    .buttons-next-and-previous-flex {
-        display: flex;
-        & .button-previous {
-            width: 192px;
-            height: 61px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            border: 1px solid rgb(74, 58, 255);
-			border-radius: 66px;
-            margin-top: 32px;
-            color: rgb(74, 58, 255);
-            font-weight: 400;
-            line-height: 20px;
-        }
-    }
     .form-inside {
         display: flex;
         flex-direction: column;
@@ -92,41 +68,6 @@
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
             background: rgb(255, 255, 255);
-        }
-        & .container-for-form-numbers {
-            box-sizing: border-box;
-            column-gap: 18px;
-            display: flex;        
-            height: 34px;
-            padding-top: 34px;
-            padding-left: 89px;
-            padding-bottom: 58px;
-            & div:first-child, div:nth-child(3), div:nth-child(5), div:nth-child(7) {
-                display: flex;
-                color: rgb(255, 255, 255);
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 18px;
-                background: rgb(74, 58, 255);
-                width: 34px;
-                height: 34px;
-                border-radius: 50%;
-                justify-content: center;
-                align-items: center;
-            }
-            & div:nth-child(2), div:nth-child(4), div:nth-child(6) {
-                width: 98px;
-                height: 6px;
-                border-radius: 40px;
-                background: rgb(239, 240, 247);
-                margin-top: 12px;
-            }
-            & div:nth-child(2) div, div:nth-child(4) div, div:nth-child(6) div  {
-                width: 98px;
-                height: 6px;
-                border-radius: 40px;
-                background: rgb(74, 58, 255);
-            }
         }
         & span:first-child {
             display: block;

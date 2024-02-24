@@ -3,15 +3,7 @@
         <span>Get a project quote</span>
         <span>Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</span>
         <div class="container-for-form">
-            <div class="container-for-form-numbers">
-                <div><div>1</div></div>
-                <div><div></div></div>
-                <div>2</div>
-                <div><div></div></div>
-                <div>3</div>
-                <div></div>
-                <div>4</div>
-            </div>
+            <StepperComponent pageNumber="pageSecond"/>
             <hr>
             <div class="container-for-form-header">Our services</div>
             <div class="container-for-form-description">Please select which service you are interested in.</div>
@@ -24,27 +16,23 @@
                 </div>
             </div>
         </div>
-        <div class="buttons-next-and-previous-flex">
-            <button class="button-previous" @click="changeSlideBack()">Previous step</button>
-            <button class="button-next" @click="changeSlide()">Next step</button>
+        <div class="buttons-next-and-previous-flex">            
+            <ButtonComponent nameOfComponentTo="FormFirst" buttonCSSType="button-previous" buttonText="Previous step"/>
+            <ButtonComponent nameOfComponentTo="FormThird" buttonCSSType="button-next" buttonText="Next step"/>
         </div>
     </div>
 </template>
 <script>
     import CheckBoxComponent from './CheckBoxComponent.vue'
+    import ButtonComponent from './ButtonComponent.vue';
+    import StepperComponent from './StepperComponent.vue';
     export default {
         inject: ['superObject'],
         components: {
             CheckBoxComponent,
+            ButtonComponent,
+            StepperComponent
         },
-        methods: {
-            changeSlide() {
-                this.$emit('changeslide', 2)                
-            },
-            changeSlideBack() {
-                this.$emit('changeslideback', 0)
-            }
-        }
     }    
 </script>
 <style scoped>
@@ -52,36 +40,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        & .button-previous {
-            width: 192px;
-            height: 61px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            border: 1px solid rgb(74, 58, 255);
-			border-radius: 66px;
-            margin-top: 32px;
-            color: rgb(74, 58, 255);
-            font-weight: 400;
-            line-height: 20px;
-            background-color: white;
-        }
-        & .button-next {
-            width: 171px;
-            height: 61px;
-            background-color: rgb(74, 58, 255);
-            border-radius: 56px;
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            margin-top: 32px;
-            border: none;
-        }
     }
     .form-container-page-2 {
         display: grid;
@@ -133,60 +91,6 @@
             margin-left: 46px;
             column-gap: 28px;
             row-gap: 44px;
-        }
-        & .container-for-form-numbers {
-            box-sizing: border-box;
-            column-gap: 18px;
-            display: flex;        
-            height: 34px;
-            padding-top: 34px;
-            padding-left: 89px;
-            padding-bottom: 58px;
-            & div:first-child, div:nth-child(3) {
-                display: flex;
-                color: rgb(255, 255, 255);
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 18px;
-                background: rgb(74, 58, 255);
-                width: 34px;
-                height: 34px;
-                border-radius: 50%;
-                justify-content: center;
-                align-items: center;
-            }
-            & div:nth-child(2), div:nth-child(4), div:nth-child(6) {
-                width: 98px;
-                height: 6px;
-                border-radius: 40px;
-                background: rgb(239, 240, 247);
-                margin-top: 12px;
-            }
-            & div:nth-child(2) div {
-                width: 98px;
-                height: 6px;
-                border-radius: 40px;
-                background: rgb(74, 58, 255);
-            }
-            div:nth-child(4) div {
-                width: 49px;
-                height: 6px;
-                border-radius: 40px;
-                background: rgb(74, 58, 255);
-            }
-            & div:nth-child(5), div:nth-child(7) {
-                display: flex;
-                color: rgb(111, 108, 144);
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 18px;
-                background: rgb(239, 240, 247);
-                width: 34px;
-                height: 34px;
-                border-radius: 50%;
-                justify-content: center;
-                align-items: center;
-            }        
         }
         & span:first-child {
             display: block;
