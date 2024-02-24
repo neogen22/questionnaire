@@ -9,10 +9,10 @@
             <div class="container-for-form-description">Please select which service you are interested in.</div>
             <div class="form">
                 <div class="form-container-page-2">
-                    <CheckBoxComponent name="Development" checkBoxImageSource="public\developmentIcon.svg"/>
-                    <CheckBoxComponent name="Web Design" checkBoxImageSource="public\WebDesignIcon.svg" />
-                    <CheckBoxComponent name="Marketing" checkBoxImageSource="public\marketing.svg" />
-                    <CheckBoxComponent name="Other" checkBoxImageSource="public\other.svg" />
+                    <CheckBoxComponent name="Development" checkBoxImageSource="developmentIcon.svg"/>
+                    <CheckBoxComponent name="Web Design" checkBoxImageSource="WebDesignIcon.svg" />
+                    <CheckBoxComponent name="Marketing" checkBoxImageSource="marketing.svg" />
+                    <CheckBoxComponent name="Other" checkBoxImageSource="other.svg" />
                 </div>
             </div>
         </div>
