@@ -15,7 +15,7 @@
         },
         data() {
             return {
-                image: new URL(`/public/${this.formImageSource}`, import.meta.url).href,
+                image: new URL(`/public/${this.formImageSource}`, import.meta.url),
             }
         },
         methods: {
