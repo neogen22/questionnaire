@@ -9,8 +9,14 @@
     export default {
         inject: ['superObject'],
         props: {
-            name: String,            
-            checkBoxImageSource: String
+            name: {
+                type: String,
+                required: true
+            },            
+            checkBoxImageSource: {
+                type: String,
+                required: true
+            }
         },
         data() {
             return {

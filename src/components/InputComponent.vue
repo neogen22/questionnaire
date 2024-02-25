@@ -7,10 +7,22 @@
 <script>
     export default {
         props: {
-            formImageSource: String,
-            formName: String,
-            formPlaceholder: String,
-            value: String
+            formImageSource: {
+                type: String,
+                required: true
+            },
+            formName: {
+                type: String,
+                required: true
+            },
+            formPlaceholder: {
+                type: String,
+                required: true
+            },
+            value: {
+                type: String,
+                required: true
+            }
         },
         data() {
             return {

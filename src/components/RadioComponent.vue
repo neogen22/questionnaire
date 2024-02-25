@@ -8,8 +8,14 @@
     export default {
         inject: ['superObject'],
         props: {
-            value: String,
-            active: Boolean,
+            value: {
+                type: String,
+                required: true
+            },
+            active: {
+                type: Boolean,
+                required: true
+            },
         },
         methods: {
             action() {
