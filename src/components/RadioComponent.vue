@@ -51,4 +51,10 @@
             padding-left: 5px;
         }
     }
+    @media (width <= 760px) {
+        div {
+            height: 45px;
+            margin-left: -25px;
+        }
+    }
 </style>

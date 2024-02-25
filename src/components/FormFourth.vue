@@ -53,55 +53,54 @@
 </script>
 <style scoped>
     .form-inside {
+        align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
     }
     .container-for-form-full {
         display: flex;
         flex-direction: column;
-        margin-left: 60px;
         & .container-for-form {
-            width: 698px;
-            height: 606px;
+            background: rgb(255, 255, 255);
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
-            background: rgb(255, 255, 255);
+            height: 606px;
+            width: 698px;
         }
         & span:first-child {
-            display: block;
             color: rgb(23, 15, 73);
+            display: block;            
             font-size: 34px;
             font-weight: 700;
             line-height: 46px;
-            text-align: center;
-            width: 680px;            
             margin-bottom: 12px;
+            text-align: center;
+            width: 680px;
         }
         & span:nth-child(2) {
-            display:block;
             color: rgb(111, 108, 144);
+            display:block;
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
-            text-align: center;
-            width: 517px;
             margin-left: 82px;
             margin-bottom: 42px;
+            text-align: center;
+            width: 517px;
         }
         & hr {
-            width: 596px;
             border: 1px solid rgb(217, 219, 233);
             margin-bottom: 64px;
             margin-left: 50px;
+            width: 596px;
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
             font-size: 24px;
             font-weight: 700;
-            line-height: 35px;
             height: 35px;
+            line-height: 35px;
             text-align: center;
         }
         & .container-for-form-description {
@@ -109,12 +108,12 @@
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
+            margin-bottom: 24px;
+            margin-left: auto;
+            margin-right: auto;
             margin-top: 5px;
             text-align: center;
             width: 463px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 24px;
         }
         & .picture {
             display: flex;
@@ -122,21 +121,111 @@
             margin-bottom: 16px;
         }
         & .button-submit {
+            align-items: center;
+            background: rgb(74, 58, 255);
+            border: none;
 		    border-radius: 48px;
             box-shadow: 0px 2.59px 10.34px 0px rgba(74, 58, 255, 0.18);
-            background: rgb(74, 58, 255);
-            width: 139.33px;
-            height: 52.58px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: rgb(255, 255, 255);
+            display: flex;
+            height: 53px;
+            justify-content: center;            
             font-size: 16px;
             font-weight: 700;
-            line-height: 17px;
             letter-spacing: 0px;
+            line-height: 17px;
             text-align: center;
-            border: none;
+            width: 139px;
+        }
+    }
+    @media (width <= 760px) {        
+        .container-for-form-full {
+            width: 300px;
+            & .container-for-form {
+                background: rgb(255, 255, 255);
+                border-radius: 48px;
+                box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
+                height: 500px;
+                padding-bottom: 0px;
+                width: 334px;
+            }
+            & span:first-child {
+                color: rgb(23, 15, 73);
+                display: block;
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 0%;
+                line-height: 46px;
+                margin-bottom: 6px;
+                max-width: 320px;
+                text-align: center;
+            }
+            & span:nth-child(2) {
+                color: rgb(111, 108, 144);
+                display:block;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0%;
+                line-height: 20px;
+                margin-bottom: 16px;
+                margin-left: 0px;
+                max-width: 320px;
+                text-align: center;
+            }
+            & hr {
+                border: 1px solid rgb(217, 219, 233);
+                margin-bottom: 16px;
+                margin-left: 20px;
+                width: 300px;
+            }            
+            & .container-for-form-header {
+                font-size: 21px;
+                padding-left: 22px;
+            }
+            & .container-for-form-description {
+                color: rgb(111, 108, 144);
+                height: 50px;
+                margin-bottom: 39px;
+                max-width: 320px;
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 0%;
+                line-height: 30px;
+                padding-left: 22px;
+                text-align: left;
+            }
+            & .form {
+                display: grid;
+                grid-template-columns: 200px;
+                row-gap: 24px;
+            }
+            & .button-submit {
+                align-items: center;
+                background: rgb(74, 58, 255);
+                border: none;
+                border-radius: 48px;
+                box-shadow: 0px 2.59px 10.34px 0px rgba(74, 58, 255, 0.18);
+                color: rgb(255, 255, 255);
+                display: flex;
+                font-size: 16px;
+                font-weight: 700;
+                height: 48px;
+                justify-content: center;
+                letter-spacing: 0px;
+                line-height: 17px;                
+                margin-top: 65px;
+                text-align: center;
+                width: 130px;
+            }
+        }
+        .buttons-next-and-previous-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 334px
+        }
+        .form-container-page-2 {
+            grid-template-columns: 264px;
         }
     }
 </style>

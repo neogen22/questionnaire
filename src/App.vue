@@ -1,5 +1,7 @@
-<template>    
-    <component :is="dynamicComponent"/>
+<template>
+    <body>
+        <component :is="dynamicComponent"/>
+    </body>
 </template>
 
 <script>
@@ -26,4 +28,14 @@ export default {
 </script>
 
 <style scoped>
+    body {
+        display: grid;
+        padding: 2rem 2rem;
+        place-items: center;
+    }
+    @media (width <= 760px) {
+        body {
+            margin-left: -25px;
+        }
+    }
 </style>

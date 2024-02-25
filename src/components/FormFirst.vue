@@ -14,7 +14,9 @@
                 <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="company.svg" @customChange="saveCompany" :value="company"/>
             </div>
         </div>
-        <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-next" buttonText="Next step"/>
+        <div class="buttons-next-and-previous-flex">
+            <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-next" buttonText="Next step"/>
+        </div>
     </div>
 </template>
 <script>
@@ -62,71 +64,145 @@
     .container-for-form-full {
         display: flex;
         flex-direction: column;
-        margin-left: 60px;
         & .container-for-form {
-            width: 698px;
-            min-height: 606px;
+            background: rgb(255, 255, 255);
             border-radius: 48px;
             box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
-            background: rgb(255, 255, 255);
+            min-height: 606px;
             padding-bottom: 86px;
+            width: 698px;
         }
         & .form {
+            column-gap: 28px;
             display: grid;
             grid-template-columns: 284px 284px;
             margin-left: 46px;
-            column-gap: 28px;
             row-gap: 44px;
         }
         & span:first-child {
-            display: block;
             color: rgb(23, 15, 73);
+            display: block;
             font-size: 34px;
             font-weight: 700;
-            line-height: 46px;
             letter-spacing: 0%;
-            text-align: center;
-            width: 680px;            
+            line-height: 46px;
             margin-bottom: 12px;
+            text-align: center;
+            width: 680px;
         }
         & span:nth-child(2) {
             display:block;
             color: rgb(111, 108, 144);
             font-size: 18px;
             font-weight: 400;
-            line-height: 30px;
             letter-spacing: 0%;
+            line-height: 30px;
+            margin-bottom: 42px;
+            margin-left: 82px;
             text-align: center;
             width: 517px;
-            margin-left: 82px;
-            margin-bottom: 42px;
         }
-        & hr {
-            width: 596px;
+        & hr {            
             border: 1px solid rgb(217, 219, 233);
             margin-bottom: 64px;
             margin-left: 50px;
+            width: 596px;
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
             font-size: 24px;
             font-weight: 700;
-            line-height: 35px;
-            letter-spacing: 0%;
-            padding-left: 46px;
             height: 35px;
+            letter-spacing: 0%;
+            line-height: 35px;
             margin-bottom: 8px;
+            padding-left: 46px;
         }
         & .container-for-form-description {
-            padding-left: 46px;
-            color: rgb(111, 108, 144);
+            color: rgb(111, 108, 144);            
             font-size: 18px;
             font-weight: 400;
-            line-height: 30px;
-            letter-spacing: 0%;
-            text-align: left;
             height: 30px;
+            letter-spacing: 0%;
+            line-height: 30px;
             margin-bottom: 39px;
+            padding-left: 46px;
+            text-align: left;
+        }
+        & .buttons-next-and-previous-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+    @media (width <= 760px) {        
+        .container-for-form-full {
+            width: 300px;            
+            & span:first-child {
+                color: rgb(23, 15, 73);
+                display: block;
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 0%;
+                line-height: 46px;
+                margin-bottom: 6px;
+                max-width: 320px;
+                text-align: center;
+            }
+            & span:nth-child(2) {
+                color: rgb(111, 108, 144);
+                display: block;                
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0%;
+                margin-bottom: 16px;
+                margin-left: 0px;
+                max-width: 320px;
+                text-align: center;
+            }
+            & hr {
+                border: 1px solid rgb(217, 219, 233);
+                margin-bottom: 16px;
+                margin-left: 20px;
+                width: 300px;
+            }
+            & .container-for-form-header {
+                font-size: 21px;
+                padding-left: 22px;
+            }
+            & .container-for-form-description {
+                color: rgb(111, 108, 144);
+                font-size: 18px;
+                font-weight: 400;
+                height: 50px;
+                line-height: 30px;
+                letter-spacing: 0%;
+                margin-bottom: 39px;
+                max-width: 320px;
+                padding-left: 22px;
+                text-align: left;
+            }                
+            & .container-for-form {
+                background: rgb(255, 255, 255);
+                border-radius: 48px;
+                box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
+                min-height: 500px;
+                padding-bottom: 0px;
+                width: 334px;
+            }
+            & .form {
+                display: grid;
+                grid-template-columns: 265px;
+                row-gap: 24px;
+                margin-top: 50px;
+            }
+        }
+        .buttons-next-and-previous-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 334px
         }
     }
 </style>

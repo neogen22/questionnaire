@@ -64,4 +64,14 @@
     .checkBoxActive {
         border: 2px solid rgb(74, 58, 255);
     }
+    @media (width <= 760px) {
+        label {
+            height: 45px;
+            margin-left: -25px
+        }
+        img {
+            height: 33px;
+            width: 33px;
+        }
+    }
 </style>

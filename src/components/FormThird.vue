@@ -84,7 +84,6 @@
     .container-for-form-full {
         display: flex;
         flex-direction: column;
-        margin-left: 60px;
         & .container-for-form {
             width: 698px;
             min-height: 606px;
@@ -145,6 +144,78 @@
             text-align: left;
             height: 30px;
             margin-bottom: 39px;
+        }
+    }
+    @media (width <= 760px) {        
+        .container-for-form-full {
+            width: 300px;
+            & .container-for-form {
+                width: 334px;
+                min-height: 500px;
+                border-radius: 48px;
+                box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
+                background: rgb(255, 255, 255);
+                padding-bottom: 0px;
+            }
+            & span:first-child {
+                display: block;
+                color: rgb(23, 15, 73);
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 46px;
+                letter-spacing: 0%;
+                text-align: center;
+                max-width: 320px;            
+                margin-bottom: 6px;
+            }
+            & span:nth-child(2) {
+                display:block;
+                color: rgb(111, 108, 144);
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0%;
+                text-align: center;
+                max-width: 320px;
+                margin-left: 0px;
+                margin-bottom: 16px;
+            }
+            & hr {
+                width: 300px;
+                border: 1px solid rgb(217, 219, 233);
+                margin-bottom: 16px;
+                margin-left: 20px;
+            }            
+            & .container-for-form-header {
+                padding-left: 22px;
+                font-size: 21px;
+            }
+            & .container-for-form-description {
+                padding-left: 22px;
+                max-width: 320px;
+                color: rgb(111, 108, 144);
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 30px;
+                letter-spacing: 0%;
+                text-align: left;
+                height: 50px;
+                margin-bottom: 39px;
+            }
+            & .form {
+                display: grid;
+                grid-template-columns: 200px;
+                row-gap: 24px;
+            }
+        }
+        .buttons-next-and-previous-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 334px
+        }
+        .form-container-page-2 {
+            grid-template-columns: 264px;
         }
     }
 </style>

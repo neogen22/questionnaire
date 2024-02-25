@@ -54,4 +54,37 @@
         line-height: 20px;
         background-color: white;
     }
+    @media (width <= 760px) {
+        .button-next {
+            width: 120px;
+            height: 46px;
+            background-color: rgb(74, 58, 255);
+            border-radius: 56px;
+            color: white;        
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            margin-top: 16px;
+            align-self: flex-end;
+            border: none;
+        }
+        .button-previous {
+            width: 120px;
+            height: 46px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border: 1px solid rgb(74, 58, 255);
+            border-radius: 66px;
+            margin-top: 16px;
+            color: rgb(74, 58, 255);
+            font-weight: 400;
+            line-height: 20px;
+            background-color: white;
+        }
+    }
 </style>

@@ -37,23 +37,23 @@
             color: rgb(23, 15, 73);
             font-size: 18px;
             font-weight: 500;
-            line-height: 20px;
             letter-spacing: 0%;
-                }
+            line-height: 20px;
+        }
         & input {
-            text-indent: 20px;
             color: rgb(111, 108, 144);
             font-size: 18px;
             font-weight: 400;
-            line-height: 20px;
             letter-spacing: 0%;
+            line-height: 20px;            
+            text-indent: 20px;
         }
-        & img {
-            width: 30px;
-            height: 30px;                    
-            position: absolute; 
-            margin-left: 240px; 
+        & img {            
+            height: 30px;
+            margin-left: 240px;
             margin-top: 55px;
+            position: absolute; 
+            width: 30px;
         }
         & :focus {
             border-color: rgb(74, 58, 255);
@@ -61,16 +61,45 @@
         }
     }
     .input-inside {
-        width: 284px;
-        height: 66px;
-        box-sizing: border-box;
+        background: rgb(255, 255, 255);
         border: 1px solid rgb(239, 240, 247);
         border-radius: 46px;
         box-shadow: 0px 2px 6px 0px rgba(19, 18, 66, 0.07);
-        background: rgb(255, 255, 255);
+        box-sizing: border-box;
+        height: 66px;
+        width: 284px;
         & :focus {
             border-color: rgb(74, 58, 255);
             border-width: 2px;
+        }
+    }
+    @media (width <= 760px) {
+        .input {
+            display: flex;
+            flex-direction: row;            
+            gap: 25px;
+            margin-left: -20px;            
+            & div {
+                min-width: 50px;
+            }
+            & div {
+                font-size: 14px;
+            }
+            & input {
+                font-size: 14px;
+                height: 45px;
+            }
+            & img {
+                height: 26px;
+                margin-left: 240px;
+                margin-top: -2px;
+                width: 26px;
+            }
+        }        
+        .input-inside {
+            box-sizing: border-box;
+            margin-top: -10px;
+            width: 550px;
         }
     }
 </style>
