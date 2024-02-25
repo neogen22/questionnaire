@@ -1,7 +1,7 @@
 <template>
     <div class="input">
         <div>{{ formName }}</div>
-        <input class="input-inside" :placeholder="formPlaceholder" @change="sendChange" :value="value" type="text" :style="{'background': `url(${image})`, 'background-repeat': 'no-repeat', 'background-position': '90% 50%'}">
+        <input class="input-inside" :placeholder="formPlaceholder" @change="sendChange" :value="value" type="text" :style="{'background': `url(${formImageSource})`, 'background-repeat': 'no-repeat', 'background-position': '90% 50%'}">
     </div>
 </template>
 <script>
