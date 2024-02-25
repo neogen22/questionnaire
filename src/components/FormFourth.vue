@@ -27,8 +27,14 @@
                 </div>  
                 <div class="container-for-form-header">Submit your quote request</div>
                 <div class="container-for-form-description">Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours.</div>
-                <button class="button-submit" @click="objectToLocalStorage()">Submit</button>
-            </div>
+                    <button class="button-submit" @click="objectToLocalStorage()" v-if="!clicked">Submit</button>
+                    <button class="button-submit" v-if="clicked">
+                        <svg width="48" height="45" viewBox="0 0 53.4645 40.4668" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">	
+                            <defs/>
+	                        <path id="Vector" d="M4.01636 23.4863L16.9969 36.4668L49.4482 4.01562" stroke="#FFFFFF" stroke-opacity="1.000000" stroke-width="8.000000" stroke-linejoin="round" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
         </div>
         <div class="buttons-next-and-previous-flex">
             <ButtonComponent nameOfComponentTo="FormThird" buttonCSSType="button-previous" buttonText="Previous step"/>
@@ -44,9 +50,15 @@
             ButtonComponent,
             StepperComponent
         },
+        data() {
+            return {
+                clicked: false
+            }
+        },
         methods: {
             objectToLocalStorage() {
                 localStorage.setItem('saved', JSON.stringify(this.superObject))
+                this.clicked = true
             }
         }
     }
@@ -136,6 +148,7 @@
             line-height: 17px;
             text-align: center;
             width: 139px;
+            transition: all 200ms;
         }
     }
     @media (width <= 760px) {        

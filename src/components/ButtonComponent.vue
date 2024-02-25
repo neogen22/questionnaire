@@ -37,6 +37,10 @@
         margin-top: 32px;
         align-self: flex-end;
         border: none;
+        transition: all 200ms;
+    } 
+    .button-next:active {
+        color:rgb(74, 58, 255);
     }
     .button-previous {
         width: 192px;
@@ -53,6 +57,10 @@
         font-weight: 400;
         line-height: 20px;
         background-color: white;
+        transition: all 200ms;
+    }
+    .button-previous:active {
+        color: white;
     }
     @media (width <= 760px) {
         .button-next {
