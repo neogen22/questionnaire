@@ -65,7 +65,7 @@
             background: rgb(255, 255, 255);
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
-            height: 606px;
+            min-height: 607px;
             width: 698px;
         }
         & span:first-child {
@@ -145,7 +145,7 @@
                 background: rgb(255, 255, 255);
                 border-radius: 48px;
                 box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
-                height: 500px;
+                min-height: 500px;
                 padding-bottom: 0px;
                 width: 334px;
             }

@@ -1,8 +1,7 @@
 <template>
     <div class="input">
-        <img :src="formImageSource">
         <div>{{ formName }}</div>
-        <input class="input-inside" :placeholder="formPlaceholder" @change="sendChange" :value="value" type="text">
+        <input class="input-inside" :placeholder="formPlaceholder" @change="sendChange" :value="value" type="text" :style="{'background': `url(${image})`, 'background-repeat': 'no-repeat', 'background-position': '90% 50%'}">
     </div>
 </template>
 <script>
@@ -48,13 +47,6 @@
             line-height: 20px;            
             text-indent: 20px;
         }
-        & img {            
-            height: 30px;
-            margin-left: 240px;
-            margin-top: 55px;
-            position: absolute; 
-            width: 30px;
-        }
         & :focus {
             border-color: rgb(74, 58, 255);
             border-width: 3px;
@@ -88,12 +80,6 @@
             & input {
                 font-size: 14px;
                 height: 45px;
-            }
-            & img {
-                height: 26px;
-                margin-left: 240px;
-                margin-top: -2px;
-                width: 26px;
             }
         }        
         .input-inside {

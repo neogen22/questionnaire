@@ -69,7 +69,7 @@
             border-radius: 48px;
             box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
             min-height: 606px;
-            padding-bottom: 86px;
+            padding-bottom: 85px;
             width: 698px;
         }
         & .form {
