@@ -172,6 +172,11 @@
             margin-top: 10px;
             position: absolute;
         }
+        @-moz-document url-prefix() {
+            & .failed {
+                margin-top: 20px;
+            }
+        }
     }
     @media (width <= 760px) {        
         .container-for-form-full {

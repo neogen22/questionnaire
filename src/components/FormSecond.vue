@@ -132,6 +132,11 @@
                 margin-top: 10px;
                 position: absolute;
             }
+            @-moz-document url-prefix() {
+                & .failed {
+                    margin-top: 22px;
+                }
+            }
         }
         & .form {
             column-gap: 28px;
