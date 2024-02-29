@@ -1,7 +1,7 @@
 <template>
-    <div class="input">
-        <div>{{ formName }}</div>
-        <input class="input-inside" :placeholder="formPlaceholder" @change="sendChange" :value="value" type="text" :style="{'background': `url(${formImageSource})`, 'background-repeat': 'no-repeat', 'background-position': '90% 50%'}">
+    <div class="input" >
+        <div :class="{'err': disabled}">{{ formName }}</div>
+        <input class="input-inside" :placeholder="formPlaceholder" @input="$emit('update:modelValue', $event.target.value)" :value="modelValue" type="text" :style="{'background': `url(${formImageSource})`, 'background-repeat': 'no-repeat', 'background-position': '90% 50%'}">
     </div>
 </template>
 <script>
@@ -19,21 +19,20 @@
                 type: String,
                 required: true
             },
-            value: {
+            disabled: {
+                type: Boolean,
+                required: false,
+            },
+            modelValue: {
                 type: String,
                 required: true
-            }
+            },
         },
         data() {
             return {
                 image: new URL(`/public/${this.formImageSource}`, import.meta.url),
             }
         },
-        methods: {
-            sendChange(event) {
-                this.$emit('customChange', event.target.value)
-            }
-        }
     }
 </script>
 <style scoped>
@@ -46,6 +45,7 @@
         gap: 18px;
         & div {
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 500;
             letter-spacing: 0%;
@@ -53,6 +53,7 @@
         }
         & input {
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             letter-spacing: 0%;
@@ -60,21 +61,32 @@
             text-indent: 20px;
         }
         & :focus {
+            border-width: 1px;
             border-color: rgb(74, 58, 255);
-            border-width: 3px;
+            box-shadow: none;
+            outline-color: rgb(74, 58, 255);
+            outline-style:solid;
+            outline-width: 3px;
+        }
+        & .err {
+            color: red
         }
     }
     .input-inside {
         background: rgb(255, 255, 255);
-        border: 1px solid rgb(239, 240, 247);
+        outline: 1px solid rgb(239, 240, 247);
         border-radius: 46px;
         box-shadow: 0px 2px 6px 0px rgba(19, 18, 66, 0.07);
         box-sizing: border-box;
         height: 66px;
         width: 284px;
         & :focus {
+            border-width: 1px;
             border-color: rgb(74, 58, 255);
-            border-width: 2px;
+            box-shadow: none;
+            outline-color: rgb(74, 58, 255);
+            outline-style:solid;
+            outline-width: 3px;
         }
     }
     @media (width <= 760px) {
@@ -87,6 +99,7 @@
                 min-width: 50px;
             }
             & div {
+                font-family: 'DM Sans';
                 font-size: 14px;
             }
             & input {

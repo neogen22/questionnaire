@@ -17,10 +17,11 @@
                     />
                 </div>
             </div>
+            <div class="failed" v-if="formThirdFail">Please, select one option</div>
         </div>
         <div class="buttons-next-and-previous-flex">
             <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-previous" buttonText="Previous step"/>
-            <ButtonComponent nameOfComponentTo="FormFourth" buttonCSSType="button-next" buttonText="Next step"/>
+            <ButtonComponent nameOfComponentTo="FormFourth" buttonCSSType="button-next" buttonText="Next step" @click="checkRadio()"/>
         </div>
     </div>
 </template>
@@ -39,36 +40,50 @@
         data() {
             return {
                 check: this.superObject.budget ? this.superObject.budget : '',
-                values: ['$5.000 - $10.000', '$10.000 - $20.000', '$20.000 - $50.000', '$50.000 +']
+                values: ['$5.000 - $10.000', '$10.000 - $20.000', '$20.000 - $50.000', '$50.000 +'],
+                formThirdFail: false
             }
         },
         methods: {
             receive(event) {
                 this.check = event
             },
+            checkRadio() {
+                if (this.check === '') {
+                    this.$root.dynamicComponent = 'FormThird'
+                    this.formThirdFail = true
+                }
+            }
+        },
+        watch: {
+            check() {
+                if (this.check !== '') {
+                    this.formThirdFail = false
+                }
+            }
         },
         beforeUnmount() {
-            this.superObject.budget = this.check
+            this.superObject.budget = this.check            
         }
     }
 </script>
 
 <style scoped>
     .selected {
-        border: 2px solid rgb(74, 58, 255);
+        outline: 2px solid rgb(74, 58, 255);
     } 
     label {
-        margin-left: 5px;
         color: rgb(23, 15, 73);
         font-size: 16px;
         font-weight: 400;
-        line-height: 17px;
         letter-spacing: 2%;
+        line-height: 17px;
+        margin-left: 5px;
     }
     input[type='radio'] {
         border-radius: 50%;
-        width: 17px;
         height: 17px;
+        width: 17px;
     }
     .buttons-next-and-previous-flex {
         display: flex;
@@ -76,131 +91,155 @@
         justify-content: space-between;
     }
     .form-container-page-2 {
+        column-gap: 28px;
         display: grid;
         grid-template-columns: 284px 284px;
-        column-gap: 28px;
         row-gap: 21px;
     }
     .container-for-form-full {
         display: flex;
         flex-direction: column;
         & .container-for-form {
-            width: 698px;
-            min-height: 606px;
+            background: rgb(255, 255, 255);            
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
-            background: rgb(255, 255, 255);
+            min-height: 606px;
             padding-bottom: 86px;
+            width: 698px;
         }
         & .form {
+            column-gap: 28px;
             display: grid;
             grid-template-columns: 284px 284px;
             margin-left: 46px;
-            column-gap: 28px;
             row-gap: 44px;
         }
         & span:first-child {
             display: block;
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 34px;
             font-weight: 700;
             line-height: 46px;
-            text-align: center;
-            width: 680px;            
             margin-bottom: 12px;
+            text-align: center;
+            width: 680px;
         }
         & span:nth-child(2) {
             display:block;
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
+            margin-bottom: 42px;
+            margin-left: 82px;
             text-align: center;
             width: 517px;
-            margin-left: 82px;
-            margin-bottom: 42px;
         }
         & hr {
-            width: 596px;
             border: 1px solid rgb(217, 219, 233);
             margin-bottom: 64px;
             margin-left: 50px;
+            width: 596px;
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 24px;
             font-weight: 700;
-            line-height: 35px;
-            padding-left: 46px;
             height: 35px;
+            line-height: 35px;
             margin-bottom: 8px;
-        }
-        & .container-for-form-description {
             padding-left: 46px;
+        }
+        & .container-for-form-description {            
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
-            line-height: 30px;
-            text-align: left;
             height: 30px;
+            line-height: 30px;
             margin-bottom: 39px;
+            padding-left: 46px;
+            text-align: left;
+        }
+        & .failed {
+            color: red;
+            font-family: 'DM Sans';
+            font-size: 25px;            
+            margin-left: 170px;
+            margin-top: 10px;
+            position: absolute;
         }
     }
     @media (width <= 760px) {        
         .container-for-form-full {
             width: 300px;
             & .container-for-form {
-                width: 334px;
-                min-height: 500px;
-                border-radius: 48px;
-                box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
                 background: rgb(255, 255, 255);
+                border-radius: 48px;                
+                box-shadow: 0px 6px 54px 0px rgba(20, 20, 43, 0.07);
+                min-height: 500px;
                 padding-bottom: 0px;
+                width: 334px;
+                & .failed {
+                    color: red;
+                    font-family: 'DM Sans';
+                    font-size: 15px;
+                    margin-left: 90px;
+                    margin-top: 10px;
+                    position: absolute;
+                }
             }
             & span:first-child {
                 display: block;
                 color: rgb(23, 15, 73);
+                font-family: 'DM Sans';
                 font-size: 24px;
                 font-weight: 700;
                 line-height: 46px;
                 letter-spacing: 0%;
-                text-align: center;
-                max-width: 320px;            
                 margin-bottom: 6px;
+                max-width: 320px;
+                text-align: center;
             }
             & span:nth-child(2) {
                 display:block;
                 color: rgb(111, 108, 144);
+                font-family: 'DM Sans';
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 20px;
                 letter-spacing: 0%;
-                text-align: center;
-                max-width: 320px;
                 margin-left: 0px;
                 margin-bottom: 16px;
+                max-width: 320px;
+                text-align: center;
             }
-            & hr {
-                width: 300px;
+            & hr {                
                 border: 1px solid rgb(217, 219, 233);
                 margin-bottom: 16px;
                 margin-left: 20px;
+                width: 300px;
             }            
             & .container-for-form-header {
-                padding-left: 22px;
+                font-family: 'DM Sans';
                 font-size: 21px;
+                padding-left: 22px;
             }
             & .container-for-form-description {
-                padding-left: 22px;
-                max-width: 320px;
                 color: rgb(111, 108, 144);
+                font-family: 'DM Sans';
                 font-size: 18px;
                 font-weight: 400;
+                height: 50px;
                 line-height: 30px;
                 letter-spacing: 0%;
-                text-align: left;
-                height: 50px;
                 margin-bottom: 39px;
+                max-width: 320px;
+                padding-left: 22px;
+                text-align: left;
             }
             & .form {
                 display: grid;

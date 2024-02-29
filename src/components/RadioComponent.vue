@@ -26,34 +26,35 @@
 </script>
 <style scoped>
     label {
-        margin-left: 5px;
         color: rgb(23, 15, 73);
+        font-family: 'DM Sans';
         font-size: 16px;
         font-weight: 400;
         line-height: 17px;
         letter-spacing: 2%;
+        margin-left: 5px;
     }
     input[type='radio'] {
         border-radius: 50%;
-        width: 17px;
         height: 17px;
+        width: 17px;
     }
     div {
-        padding-left: 26px;
-        box-sizing: border-box;
+        align-items: center;
+        background: rgb(255, 255, 255);
         border: 1px solid rgb(239, 240, 247);
 		border-radius: 16px;
         box-shadow: 0 2px 6px 0 rgba(19, 18, 66, 0.07);
-        background: rgb(255, 255, 255);
-        height: 115px;
+        box-sizing: border-box;
         display: flex;
-        align-items: center;            
+        height: 115px;
+        padding-left: 26px;
         & div {
             color: rgb(23, 15, 73);
             font-size: 16px;
-            font-weight: 400;
-            line-height: 17px;
+            font-weight: 400;            
             letter-spacing: 2%;
+            line-height: 17px;
             padding-left: 5px;
         }
     }

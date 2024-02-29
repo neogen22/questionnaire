@@ -8,14 +8,14 @@
             <div class="container-for-form-header">Contact details</div>
             <div class="container-for-form-description">Please fill your information so we can get in touch with you.</div>
             <div class="form">
-                <InputComponent formPlaceholder="John Carter" formName="Name" formImageSource="man.svg" @customChange="saveName" :value="personName"/>
-                <InputComponent formPlaceholder="Email address" formName="Email" formImageSource="email.svg" @customChange="saveEmail" :value="email"/>
-                <InputComponent formPlaceholder="Phone number" formName="Phone" formImageSource="phone.svg" @customChange="savePhone" :value="phone"/>
-                <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="company.svg" @customChange="saveCompany" :value="company"/>
+                <InputComponent formPlaceholder="John Carter" formName="Name" formImageSource="man.svg"  v-model="personName" :disabled="disablePersonName"/>
+                <InputComponent formPlaceholder="Email address" formName="Email" formImageSource="email.svg" v-model="email" :disabled="disableEmail"/>
+                <InputComponent formPlaceholder="Phone number" formName="Phone" formImageSource="phone.svg" v-model="phone"/>
+                <InputComponent formPlaceholder="Company name" formName="Company" formImageSource="company.svg" v-model="company"/>
             </div>
         </div>
-        <div class="buttons-next-and-previous-flex">
-            <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-next" buttonText="Next step"/>
+        <div class="buttons-next-and-previous-flex">            
+            <ButtonComponent nameOfComponentTo="FormSecond" buttonCSSType="button-next" buttonText="Next step"  @click="checkParameters()"/>
         </div>
     </div>
 </template>
@@ -36,27 +36,50 @@
                 email: this.superObject?.email ? this.superObject.email : '',
                 phone: this.superObject?.phone ? this.superObject.phone : '',
                 company: this.superObject?.company ? this.superObject.company : '',
+                disablePersonName: false,
+                disableEmail: false,
+                firstClickedFail: false
             }
         },
         methods: {
-            saveName(event) {
-                this.personName = event                
+            checkParameters() {
+                if (this.personName.length === 0 || this.email.length === 0) {
+                    this.$root.dynamicComponent = 'FormFirst'
+                    this.firstClickedFail = true
+                    if (this.personName.length === 0) {
+                        this.disablePersonName = true                        
+                    }
+                    if (this.email.length === 0) {
+                        this.disableEmail = true
+                    }
+                }
             },
-            saveEmail(event) {
-                this.email = event
-            },
-            saveCompany(event) {
-                this.company = event
-            },
-            savePhone(event) {
-                this.phone = event
-            }
         },
         beforeUnmount() {
             this.superObject.personName = this.personName
             this.superObject.email = this.email
             this.superObject.company = this.company
             this.superObject.phone = this.phone
+        },
+        watch: {
+            personName(value) {
+                if (this.firstClickedFail) {
+                    if (value !== '') {
+                        this.disablePersonName = false
+                    } else {
+                        this.disablePersonName = true
+                    }
+                }
+            },
+            email(value) {
+                if (this.firstClickedFail) {
+                    if (value !== '') {
+                        this.disableEmail = false
+                    } else {
+                        this.disableEmail = true
+                    }
+                }
+            }
         }
     }
 </script>
@@ -82,6 +105,7 @@
         & span:first-child {
             color: rgb(23, 15, 73);
             display: block;
+            font-family: 'DM Sans';
             font-size: 34px;
             font-weight: 700;
             letter-spacing: 0%;
@@ -93,6 +117,7 @@
         & span:nth-child(2) {
             display:block;
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             letter-spacing: 0%;
@@ -110,16 +135,18 @@
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 24px;
             font-weight: 700;
             height: 35px;
             letter-spacing: 0%;
             line-height: 35px;
             margin-bottom: 8px;
-            padding-left: 46px;
+            padding-left: 46px;            
         }
         & .container-for-form-description {
             color: rgb(111, 108, 144);            
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             height: 30px;
@@ -127,7 +154,7 @@
             line-height: 30px;
             margin-bottom: 39px;
             padding-left: 46px;
-            text-align: left;
+            text-align: left;            
         }
         & .buttons-next-and-previous-flex {
             display: flex;
@@ -141,6 +168,7 @@
             & span:first-child {
                 color: rgb(23, 15, 73);
                 display: block;
+                font-family: 'DM Sans';
                 font-size: 24px;
                 font-weight: 700;
                 letter-spacing: 0%;
@@ -151,7 +179,8 @@
             }
             & span:nth-child(2) {
                 color: rgb(111, 108, 144);
-                display: block;                
+                display: block;      
+                font-family: 'DM Sans';          
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 20px;
@@ -168,11 +197,13 @@
                 width: 300px;
             }
             & .container-for-form-header {
+                font-family: 'DM Sans';
                 font-size: 21px;
                 padding-left: 22px;
             }
             & .container-for-form-description {
                 color: rgb(111, 108, 144);
+                font-family: 'DM Sans';
                 font-size: 18px;
                 font-weight: 400;
                 height: 50px;
@@ -194,8 +225,8 @@
             & .form {
                 display: grid;
                 grid-template-columns: 265px;
-                row-gap: 24px;
                 margin-top: 50px;
+                row-gap: 24px;
             }
         }
         .buttons-next-and-previous-flex {

@@ -21,6 +21,9 @@
     }
 </script>
 <style scoped>
+    div {
+        font-family: 'DM Sans';
+    }
     .stepper-general {
         box-sizing: border-box;
         column-gap: 18px;

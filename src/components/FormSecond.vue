@@ -9,16 +9,17 @@
             <div class="container-for-form-description">Please select which service you are interested in.</div>
             <div class="form">
                 <div class="form-container-page-2">
-                    <CheckBoxComponent name="Development" checkBoxImageSource="developmentIcon.svg"/>
-                    <CheckBoxComponent name="Web Design" checkBoxImageSource="WebDesignIcon.svg" />
-                    <CheckBoxComponent name="Marketing" checkBoxImageSource="marketing.svg" />
-                    <CheckBoxComponent name="Other" checkBoxImageSource="other.svg" />
+                    <CheckBoxComponent name="Development" checkBoxImageSource="developmentIcon.svg" v-model="first"/>
+                    <CheckBoxComponent name="Web Design" checkBoxImageSource="WebDesignIcon.svg" v-model="second"/>
+                    <CheckBoxComponent name="Marketing" checkBoxImageSource="marketing.svg" v-model="third"/>
+                    <CheckBoxComponent name="Other" checkBoxImageSource="other.svg" v-model="fourth"/>
                 </div>
             </div>
+            <div class="failed" v-if="formSecondFail">Please, select one or more options</div>
         </div>
         <div class="buttons-next-and-previous-flex">            
             <ButtonComponent nameOfComponentTo="FormFirst" buttonCSSType="button-previous" buttonText="Previous step"/>
-            <ButtonComponent nameOfComponentTo="FormThird" buttonCSSType="button-next" buttonText="Next step"/>
+            <ButtonComponent nameOfComponentTo="FormThird" buttonCSSType="button-next" buttonText="Next step" @click="check()"/>
         </div>
     </div>
 </template>
@@ -33,6 +34,46 @@
             ButtonComponent,
             StepperComponent
         },
+        data() {
+            return {
+                formSecondFail: false,
+                first: false,
+                second: false,
+                third: false,
+                fourth: false,
+                firstClicked: false
+            }
+        },
+        methods: {
+            check() {
+                if (this.superObject.services === undefined || this.superObject.services.length === 0) {
+                    this.$root.dynamicComponent = 'FormSecond'
+                    this.formSecondFail = true
+                }
+            }
+        },
+        watch: {
+            first() {
+                if (this.first) {
+                    this.formSecondFail = false
+                }
+            },
+            second() {
+                if (this.second) {
+                    this.formSecondFail = false
+                }
+            },
+            third() {
+                if (this.third) {
+                    this.formSecondFail = false
+                }
+            },
+            fourth() {
+                if (this.fourth) {
+                    this.formSecondFail = false
+                }
+            }
+        }
     }    
 </script>
 <style scoped>
@@ -83,6 +124,14 @@
             min-height: 606px;
             min-width: 698px;
             padding-bottom: 86px;
+            & .failed {
+                color: red;
+                font-family: 'DM Sans';
+                font-size: 25px;
+                margin-left: 170px;
+                margin-top: 10px;
+                position: absolute;
+            }
         }
         & .form {
             column-gap: 28px;
@@ -94,6 +143,7 @@
         & span:first-child {
             color: rgb(23, 15, 73);
             display: block;
+            font-family: 'DM Sans';
             font-size: 34px;
             font-weight: 700;
             line-height: 46px;
@@ -104,6 +154,7 @@
         & span:nth-child(2) {
             color: rgb(111, 108, 144);
             display: block;
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
@@ -120,6 +171,7 @@
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 24px;
             font-weight: 700;
             height: 35px;
@@ -129,6 +181,7 @@
         }
         & .container-for-form-description {
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
@@ -148,10 +201,19 @@
                 min-height: 500px;
                 min-width: 334px;
                 padding-bottom: 0px;
+                & .failed {
+                    color: red;
+                    font-family: 'DM Sans';
+                    font-size: 15px;
+                    margin-left: 50px;
+                    margin-top: 10px;
+                    position: absolute;
+                }
             }
             & span:first-child {
                 color: rgb(23, 15, 73);
                 display: block;
+                font-family: 'DM Sans';
                 font-size: 24px;
                 font-weight: 700;
                 letter-spacing: 0%;
@@ -163,6 +225,7 @@
             & span:nth-child(2) {
                 color: rgb(111, 108, 144);
                 display: block;
+                font-family: 'DM Sans';
                 font-size: 14px;
                 font-weight: 400;
                 letter-spacing: 0%;
@@ -179,12 +242,14 @@
                 width: 300px;
             }            
             & .container-for-form-header {
+                font-family: 'DM Sans';
                 font-size: 21px;
                 padding-left: 22px;
             }
             & .container-for-form-description {
                 color: rgb(111, 108, 144);
                 height: 50px;
+                font-family: 'DM Sans';
                 font-size: 18px;
                 font-weight: 400;
                 line-height: 30px;

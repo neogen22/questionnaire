@@ -1,5 +1,5 @@
 <template>
-        <div class="container-for-form-full">
+    <div class="container-for-form-full">
         <span>Get a project quote</span>
         <span>Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</span>
         <div class="container-for-form">
@@ -77,12 +77,13 @@
             background: rgb(255, 255, 255);
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
-            min-height: 607px;
+            min-height: 606.6px;
             width: 698px;
         }
         & span:first-child {
             color: rgb(23, 15, 73);
-            display: block;            
+            display: block;
+            font-family: 'DM Sans';
             font-size: 34px;
             font-weight: 700;
             line-height: 46px;
@@ -93,6 +94,7 @@
         & span:nth-child(2) {
             color: rgb(111, 108, 144);
             display:block;
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
@@ -109,6 +111,7 @@
         }
         & .container-for-form-header {
             color: rgb(23, 15, 73);
+            font-family: 'DM Sans';
             font-size: 24px;
             font-weight: 700;
             height: 35px;
@@ -117,6 +120,7 @@
         }
         & .container-for-form-description {
             color: rgb(111, 108, 144);
+            font-family: 'DM Sans';
             font-size: 18px;
             font-weight: 400;
             line-height: 30px;
@@ -139,7 +143,9 @@
 		    border-radius: 48px;
             box-shadow: 0px 2.59px 10.34px 0px rgba(74, 58, 255, 0.18);
             color: rgb(255, 255, 255);
+            cursor: pointer;
             display: flex;
+            font-family: 'DM Sans';
             height: 53px;
             justify-content: center;            
             font-size: 16px;
@@ -147,8 +153,9 @@
             letter-spacing: 0px;
             line-height: 17px;
             text-align: center;
-            width: 139px;
             transition: all 200ms;
+            width: 139px;            
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
         }
     }
     @media (width <= 760px) {        
@@ -165,6 +172,7 @@
             & span:first-child {
                 color: rgb(23, 15, 73);
                 display: block;
+                font-family: 'DM Sans';
                 font-size: 24px;
                 font-weight: 700;
                 letter-spacing: 0%;
@@ -176,6 +184,7 @@
             & span:nth-child(2) {
                 color: rgb(111, 108, 144);
                 display:block;
+                font-family: 'DM Sans';
                 font-size: 14px;
                 font-weight: 400;
                 letter-spacing: 0%;
@@ -192,11 +201,13 @@
                 width: 300px;
             }            
             & .container-for-form-header {
+                font-family: 'DM Sans';
                 font-size: 21px;
                 padding-left: 22px;
             }
             & .container-for-form-description {
                 color: rgb(111, 108, 144);
+                font-family: 'DM Sans';
                 height: 50px;
                 margin-bottom: 39px;
                 max-width: 320px;
@@ -219,7 +230,9 @@
                 border-radius: 48px;
                 box-shadow: 0px 2.59px 10.34px 0px rgba(74, 58, 255, 0.18);
                 color: rgb(255, 255, 255);
+                cursor: pointer;
                 display: flex;
+                font-family: 'DM Sans';
                 font-size: 16px;
                 font-weight: 700;
                 height: 48px;
