@@ -174,7 +174,7 @@
         }
         @-moz-document url-prefix() {
             & .failed {
-                margin-top: 20px;
+                margin-top: 22px;
             }
         }
     }

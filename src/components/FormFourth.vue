@@ -77,7 +77,7 @@
             background: rgb(255, 255, 255);
             border-radius: 48px;
             box-shadow: 0 6px 54px 0 rgba(20, 20, 43, 0.07);
-            min-height: 606.6px;
+            min-height: 607px;
             width: 698px;
         }
         & span:first-child {
